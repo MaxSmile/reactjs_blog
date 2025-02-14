@@ -1,24 +1,26 @@
-import Post from './components/Post'
 
-import { LogoIcon } from './assets/icons'
-import './styles/App.css'
-
-// another title to get https://llama2.maxim-e72.workers.dev/
-
+import { Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Home from "./components/Home";
+import Post from "./components/Post";
+import './styles/App.css';
 
 const App = () => {
-  return (
-    <>
-      <header className='header'>
-        <div className='header__content'>
-          <div className='logo'><LogoIcon /><strong>Blog of Decentralized Thoughts</strong></div>
-        </div>
-      </header>
-      <main className='main'>
-        <Post />
-      </main>
-    </>
-  )
-}
+  const [articles, setArticles] = useState([]);
 
-export default App
+  useEffect(() => {
+    fetch("/posts/articles.json")
+      .then((res) => res.json())
+      .then((data) => setArticles(data))
+      .catch((err) => console.error("Error fetching posts:", err));
+  }, [articles]);
+
+  return (
+      <Routes>
+        <Route path="/" element={<Home articles={articles} />} />
+        <Route path="/post/:slug" element={<Post articles={articles} />} />
+      </Routes>
+  );
+};
+
+export default App;

@@ -18,7 +18,7 @@ body {
   color: var(--text-color);
 }
 
-header.header {
+/* header.header {
   position: fixed;
   width: 100%;
   height: 3.5rem;
@@ -27,7 +27,7 @@ header.header {
   background-color: var(--background-content);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
   z-index: 10;
-}
+} */
 
 .header__content {
   max-width: 1280px;
@@ -97,4 +97,23 @@ code {
   main.main {
     width: 90%;
   }
+}
+
+.article-wrapper {
+  padding: 2rem;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+
+.right {
+  text-align: right;
+}
+
+.left {
+  text-align: left;
+}
+
+.date {
+  font-style: italic;
+  font-size: 0.8rem;
 }
