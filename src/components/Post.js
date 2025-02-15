@@ -1,13 +1,20 @@
 import { useParams, Link } from "react-router-dom";
 import Markdown from "markdown-to-jsx";
 import { LogoIcon } from "../assets/icons";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import Page404 from "./Page404"; // Import 404 Page
 
 const Post = ({ articles }) => {
   const { slug } = useParams();
   const index = articles.findIndex((a) => a.slug === slug);
-  const article = articles[index];
+  const article = index !== -1 ? articles[index] : null; // Valid article or null
+  const isLoading = articles.length === 0; // Ensure articles have loaded
 
-  if (!article) return <h2>Article Not Found</h2>;
+  // Show 404 if articles exist but the slug is invalid
+  if (!isLoading && !article) {
+    return <Page404 />;
+  }
 
   // Find Previous & Next articles
   const prevArticle = index > 0 ? articles[index - 1] : null;
@@ -25,35 +32,46 @@ const Post = ({ articles }) => {
           </div>
         </header>
 
-        <h2>{article.title}</h2>
+        <h2>{isLoading ? <Skeleton width={300} height={30} /> : article.title}</h2>
 
         <main>
-          <Markdown>{article.content}</Markdown>
+          {isLoading ? (
+            <Skeleton count={5} height={20} />
+          ) : (
+            <Markdown>{article.content}</Markdown>
+          )}
         </main>
 
-        <footer className="article-footer">
-          <p className="date">Published: {new Date(article.timestamp).toLocaleDateString()}</p>
+        <p className="date">
+          {isLoading ? <Skeleton width={150} /> : `Published: ${new Date(article.timestamp).toLocaleDateString()}`}
+        </p>
+      </article>
 
-          <div className="navigation">
-            <p className="left">
-          {nextArticle && (
+      <footer className="article-footer">
+        <p className="left">
+          {isLoading ? (
+            <Skeleton width={120} />
+          ) : (
+            nextArticle && (
               <Link to={`/post/${nextArticle.slug}`} className="nav-link">
                 ← {nextArticle.title}
               </Link>
-            )}
-            </p>
-            
-            <p className="right">
-            {prevArticle && (
+            )
+          )}
+        </p>
+
+        <p className="right">
+          {isLoading ? (
+            <Skeleton width={120} />
+          ) : (
+            prevArticle && (
               <Link to={`/post/${prevArticle.slug}`} className="nav-link">
-                 {prevArticle.title}  →
+                {prevArticle.title} →
               </Link>
-            )}
-            </p>
-            
-          </div>
-        </footer>
-      </article>
+            )
+          )}
+        </p>
+      </footer>
     </div>
   );
 };

@@ -1,0 +1,32 @@
+.page-404 {
+    text-align: center;
+    padding: 5rem;
+  }
+  
+  .page-404 h1 {
+    font-size: 5rem;
+    color: #ff4d4d;
+    margin-bottom: 1rem;
+  }
+  
+  .page-404 p {
+    font-size: 1.2rem;
+    color: #E5E5E5;
+    margin-bottom: 2rem;
+  }
+  
+  .home-button {
+    display: inline-block;
+    background-color: #4DFF7C;
+    color: #1D1D1D;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .home-button:hover {
+    background-color: #89DDFF;
+  }
+  

@@ -1,18 +1,179 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="https://schema.org/WebPage">
 
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Decentralized Thoughts – A Blog on Web3, AI & Future Tech</title>
+
+  <!-- 🌎 SEO Meta Tags -->
+  <meta name="description"
+    content="Decentralized Thoughts is a blog exploring Web3, AI, blockchain, and the future of decentralized technology.">
+  <meta name="keywords" content="Web3, AI, blockchain, decentralized tech, crypto, metaverse, DeFi">
+  <meta name="author" content="Your Name">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://netx.smrtai.top/">
+
+  <!-- 📢 Open Graph (Facebook, LinkedIn, etc.) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Decentralized Thoughts – A Blog on Web3, AI & Future Tech">
+  <meta property="og:description" content="Explore Web3, AI, blockchain, and the decentralized future in our blog.">
+  <meta property="og:url" content="https://netx.smrtai.top/">
+  <meta property="og:image" content="https://netx.smrtai.top/og-image.jpg">
+
+  <!-- 🐦 Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Decentralized Thoughts – A Blog on Web3, AI & Future Tech">
+  <meta name="twitter:description" content="Explore Web3, AI, blockchain, and the decentralized future in our blog.">
+  <meta name="twitter:image" content="https://netx.smrtai.top/og-image.jpg">
+
+  <!-- 📡 Performance Optimizations -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
+
+  <!-- 📱 Web App Icons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
-  <title>My blog Decentralized Thoughts</title>
+
+  <!-- 📝 Structured Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Decentralized Thoughts",
+    "url": "https://netx.smrtai.top/",
+    "description": "Explore Web3, AI, blockchain, and the decentralized future in our blog.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Your Blog Name",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://netx.smrtai.top/logo.png"
+      }
+    }
+  }
+</script>
+  <style>
+    :root {
+      --background-body: #292929;
+      --background-content: #1D1D1D;
+      --text-color: #E5E5E5;
+      --primary-color: #4DFF7C;
+      --second-color: #89DDFF;
+    }
+
+    body {
+      margin: 0;
+      font-size: 1rem;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+      background-color: var(--background-body);
+      color: var(--text-color);
+    }
+
+    .header__content {
+      max-width: 1280px;
+      padding: 0 1rem;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 3.5rem;
+      background-color: var(--background-content);
+    }
+
+    .logo {
+      font-size: 20px;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      color: var(--text-color);
+      white-space: nowrap;
+    }
+
+    main.main {
+      max-width: 900px;
+      margin: 4.5rem auto 3rem auto;
+      padding: 1rem;
+      background-color: var(--background-content);
+      box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+      border-radius: 3px;
+    }
+
+
+    a {
+      color: var(--primary-color);
+      font-weight: 500;
+    }
+
+
+
+    @media screen and (max-width: 768px) {
+      .header__content {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem;
+      }
+
+      .logo {
+        font-size: 18px;
+        text-align: center;
+      }
+
+    }
+
+    @media screen and (max-width: 520px) {
+      .logo {
+        font-size: 16px;
+      }
+
+      main.main {
+        max-width: 95%;
+        padding: 0.5rem;
+      }
+
+      .header__content {
+        padding: 0.5rem;
+      }
+    }
+
+    .super-static-footer {
+      background: #1D1D1D;
+      color: #E5E5E5;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      width: 100%;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+      margin-top: 2rem;
+    }
+  </style>
+
 </head>
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
+
+  <nav class="super-static-footer" role="navigation">
+    <p>&copy; <span id="year"></span> <a href="/">Decentralized Thoughts</a>. All rights reserved.</p>
+    <p>
+      <a href="https://smrtai.top/about">About</a> |
+      <a href="https://smrtai.top/contacts">Contact</a> |
+      <a href="https://smrtai.top/privacy">Privacy Policy</a>
+    </p>
+  </nav>
+
+  <script>
+    // Auto-update copyright year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 
 </html>
