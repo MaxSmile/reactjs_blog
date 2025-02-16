@@ -1,8 +1,38 @@
 import { Link } from "react-router-dom";
 import { LogoIcon } from "../assets/icons";
 import "../styles/Home.css";
+import { useEffect, useState } from "react";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
+// Skeleton Loader Component
+const SkeletonLoader = () => (
+  <SkeletonTheme baseColor="#666666" highlightColor="#999999">
+    {Array.from({ length: 10 }).map((_, index) => (
+      <Link to="/" key={index} className="article-tile">
+        <div key={index} className="article-content">
+          <Skeleton className="article-icon" height={50} width={50} />
+          <div className="article-text">
+            <Skeleton count={2} />
+            <Skeleton width="50%" height={15} />
+          </div>
+        </div>
+      </Link>
+    ))}
+  </SkeletonTheme>
+);
+
+
 
 const Home = ({ articles }) => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (articles.length > 0) {
+      setLoading(false);
+    }
+  }, [articles]);
+
   return (
     <article className="article-wrapper">
       <header className="header">
@@ -15,22 +45,31 @@ const Home = ({ articles }) => {
       </header>
 
       <main className="main">
-        {articles.length === 0 ? (
-          <p>Loading articles...</p>
-        ) : (
-          <div className="articles-grid">
-            {articles.map((article, index) => (
+        <div className="articles-grid">
+          {loading ? (
+            <SkeletonLoader />
+          ) : (
+            articles.map((article, index) => (
               <Link to={`/post/${article.slug}`} key={index} className="article-tile">
                 <div className="article-content">
-                  <h2>{article.title}</h2>
-                  <p className="article-date">
-                    {new Date(article.timestamp).toLocaleDateString()}
-                  </p>
+                  {/* First flex column */}
+                  <img
+                    className="article-icon"
+                    src={`https://www.gravatar.com/avatar/${article.gravatarHash}?d=identicon`}
+                    alt="Post Icon"
+                  />
+                  {/* Second flex column */}
+                  <div className="article-text">
+                    <h2>{article.title}</h2>
+                    <p className="article-date">
+                      {new Date(article.timestamp).toLocaleDateString()}
+                    </p>
+                  </div>
                 </div>
               </Link>
-            ))}
-          </div>
-        )}
+            ))
+          )}
+        </div>
       </main>
     </article>
   );

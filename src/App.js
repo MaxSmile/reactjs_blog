@@ -6,13 +6,23 @@ import Post from "./components/Post";
 import './styles/App.css';
 import Page404 from "./components/Page404";
 
+import CryptoJS from "crypto-js";
+
+const getGravatarHash = (title) => {
+  return CryptoJS.SHA256(title).toString(CryptoJS.enc.Hex);
+};
 const App = () => {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
     fetch("/posts/articles.json")
       .then((res) => res.json())
-      .then((data) => setArticles(data))
+      .then((data) => {
+        data.forEach((article) => {
+          article.gravatarHash = getGravatarHash(article.title);
+        })
+        setArticles(data);
+      })
       .catch((err) => console.error("Error fetching posts:", err));
   }, []);
 
