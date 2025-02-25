@@ -4,22 +4,36 @@ import { LogoIcon } from "../assets/icons";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Page404 from "./Page404";
+import { useEffect, useState } from "react";
 
+const Loader = () => {
+  return (
+    <SkeletonTheme baseColor="#666" highlightColor="#999">
+      <div className="article-wrapper">
+        {/* Just show skeleton placeholders here... */}
+        <Skeleton className="article-icon" height={50} width={50} />
+        <Skeleton width={300} height={30} />
+        <Skeleton count={12} />
+      </div>
+    </SkeletonTheme>
+  );
+}
 const Post = ({ articles }) => {
   const { slug } = useParams();
 
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 4000); 
+
+    return () => clearTimeout(timer);
+  }, []);
+
+
   // 1) If articles is null/undefined, return your skeleton immediately
   if (!articles) {
-    return (
-      <SkeletonTheme baseColor="#666" highlightColor="#999">
-        <div className="article-wrapper">
-          {/* Just show skeleton placeholders here... */}
-          <Skeleton className="article-icon" height={50} width={50} />
-          <Skeleton width={300} height={30} />
-          <Skeleton count={12} />
-        </div>
-      </SkeletonTheme>
-    );
+    return <Loader />
   }
 
   // 2) If we do have articles, find the matching article
@@ -27,6 +41,9 @@ const Post = ({ articles }) => {
 
   // 3) If the slug does not exist in our loaded articles, show 404
   if (index === -1) {
+    if (loading) {
+      return <Loader />
+    }
     return <Page404 />;
   }
 
