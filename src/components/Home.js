@@ -8,6 +8,14 @@ import "react-loading-skeleton/dist/skeleton.css";
 // Skeleton Loader Component
 const SkeletonLoader = () => (
   <SkeletonTheme baseColor="#666666" highlightColor="#999999">
+    <title>Decentralized Thoughts – A Blog on Web3, AI & Future Tech</title>
+    <meta name="description"
+      content="Decentralized Thoughts is a blog exploring Web3, AI, blockchain, and the future of decentralized technology." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Decentralized Thoughts – A Blog on Web3, AI & Future Tech" />
+    <meta property="og:description" content="Explore Web3, AI, blockchain, and the decentralized future in our blog." />
+    <meta property="og:image" content="/android-chrome-512x512.png" />
+
     {Array.from({ length: 10 }).map((_, index) => (
       <Link to="/" key={index} className="article-tile">
         <div key={index} className="article-content">

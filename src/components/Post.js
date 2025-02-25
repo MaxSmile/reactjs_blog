@@ -25,7 +25,7 @@ const Post = ({ articles }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 4000); 
+    }, 4000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -52,8 +52,20 @@ const Post = ({ articles }) => {
   const prevArticle = index > 0 ? articles[index - 1] : null;
   const nextArticle = index < articles.length - 1 ? articles[index + 1] : null;
 
+  const pageTitle = article.title;
+  const pageDescription = article.title;
+  const pageImage = `https://www.gravatar.com/avatar/${article.gravatarHash}?d=identicon`;
+  const pageUrl = window.location.href;
+
   return (
     <SkeletonTheme baseColor="#666666" highlightColor="#999999">
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:image" content={pageImage} />
+        <meta property="og:url" content={pageUrl} />
+        <meta property="og:type" content="article" />
       <div className="article-wrapper">
         <article>
           <header className="header">
